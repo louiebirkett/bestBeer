@@ -1,0 +1,7 @@
+{
+    "name": "best_beer_backend",
+    "version": "0.0.1",
+    "dependencies": {
+        "proper-lockfile": "4.1.2"
+    }
+}
