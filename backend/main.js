@@ -30,6 +30,13 @@ fs.readFileSync(config, (err, data) => {
         password: configJson.mysql.password,
         port: configJson.mysql.port
     });
+
+    // Try and open the MySQL connection
+    conn.connect((error) => {
+        if(error) {
+            throw error;
+        }
+    });
 });
 
 // Lock the config file so that it cannot be read again,
@@ -39,17 +46,11 @@ lockfile.lock(config).catch((err) => {
     if(err) {
         throw err;
     }
-})
-
-// Try and open the MySQL connection
-conn.connect((error) => {
-    if(error) {
-        throw error;
-    }
 });
+
 
 // Create the server, supplying the request listener to handle requests
 const server = http.createServer(requestListener);
 
 // Let the server start receiving traffic
-server.listen();
+server.listen(8080);
