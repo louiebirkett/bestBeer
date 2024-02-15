@@ -1,8 +1,0 @@
-{
-    "name": "best_beer_backend",
-    "version": "0.0.1",
-    "dependencies": {
-        "mysql": "^2.18.1",
-        "proper-lockfile": "^4.1.2"
-    }
-}

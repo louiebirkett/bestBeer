@@ -1,8 +1,8 @@
 {
     "mysql": {
         "host": "localhost",
-        "user": "username",
-        "password": "password",
-        "port": 3300
+        "user": "mp1282_admin",
+        "password": "ZzTHjD2BJTb5u.g",
+        "db_name": "mp1282_ci536"
     }
 }
