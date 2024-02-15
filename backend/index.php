@@ -21,10 +21,14 @@ function connectToMysql() {
 
 $conn = connectToMysql();
 
-$sql = "SELECT * FROM test";
+$sql = "SELECT * FROM tableBeerTypes";
 $result = $conn->query($sql);
+$arr = array();
 while($row = $result->fetch_assoc()) {
-    print_r($row);
+    $element = array("name" => $row["name"], "alcPercent" => $row["alcPercent"]);
+    array_push($arr, $element);
 }
 $conn->close();
+
+echo json_encode($arr);
 ?>
