@@ -1,4 +1,6 @@
 POST https://mp1282.brighton.domains/ci536/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-a=Brighton
+userLat=50.84560363784431
+&userLong=-0.11759601772484574
+&searchRadius=5000
