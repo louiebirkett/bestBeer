@@ -33,7 +33,7 @@ $st = $conn->prepare("DELETE FROM `tableBeerTypes` WHERE name = 'Stella'");
 $st->execute();
 */
 $sql = "INSERT INTO tableBeerTypes (name, alcPercent, linkToImg)
-VALUES ('Stella', '4.9', 'images/stella.png')";
+VALUES ('Carling', '3.7', 'images/carling.png')";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
