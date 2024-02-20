@@ -1,0 +1,48 @@
+
+.mapContainer{
+    /* position: absolute  ; */
+    z-index: 0;
+
+}
+.sidebarContainer{
+    overflow: hidden;
+    /* border: solid red; */
+    background-color: rgba(93, 93, 93, 0.9);
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem ;
+    height: 100%;
+    width: 45vh;
+    z-index: 1;
+    position: absolute;
+    /* position: absolute; */
+}
+
+.searchbar{
+    overflow: hidden;
+    position: absolute;
+    width: 80%;
+    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    top: 5%;
+    height: 5vh;
+    border-radius: 15px;
+    margin-left: 10%;
+    background-color: rgba(125, 125, 125, 1);
+}
+#searchIcon{
+    margin: 10px;
+    margin-left: 20px;
+    /* border: solid; */
+    width: 10%;
+    display: inline;
+}
+#searchbarText{
+    color: #D3D0D0;
+    margin: 10px;
+    position: inherit;
+    display: inline;
+    justify-content: center;
+    top: 2px;
+    left: 50px;
+    font-size: 18px;
+    text-align: center;
+}
