@@ -17,21 +17,116 @@
     /* position: absolute; */
 }
 
+.searchContainer{
+    /* border: solid red; */
+    height: 20%;
+}
+
+
 .searchBar input{
     background: transparent url("../images/iconSearch.svg") no-repeat 1px;
     width: 80%;
     margin: 10%;
-    /* padding: 10px; */
+    padding: 10px;
     padding: 9px 4px 9px 55px;
     border-radius: 10px;
     background-color: rgba(125, 125, 125, 1);  
     color: #D3D0D0;
-    font-size: 1em;
-
+    font-size: 1rem;
 }
 .searchBar input::placeholder{
    color: #D3D0D0; 
    /* font-size: 1.2em; */
 }
+.searchBar input:focus{
+    outline: none;
+}
 
 
+.filterIcon svg{
+    bottom: 20px;
+    left: 50px;
+    /* border: solid blue; */
+    position: relative;
+    width: 25px;
+}
+.filterIcon svg:hover{
+    cursor: pointer;
+}
+
+
+
+.resultsContainer{
+    overflow: auto;
+    /* border: solid blue; */
+    height: 100%;
+}
+.resultWrapper{
+    width: 100%;
+    height: 125px;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem ;
+    background-color: rgba(93, 93, 93, 0.75);
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
+    /* border: solid pink 2px; */
+    
+}
+
+.resultTitle{
+    display: block;
+    margin: 0;
+    padding-top: 3%;
+    padding-left: 10%;
+    font-size: 1rem;
+    font-weight:normal;
+    color: #F0ECEC;
+    
+}
+
+.partition{
+    /* border: solid red; */
+    width: 80%;
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+.resultRating{
+    position: relative;
+    /* border: solid blue; */
+    width: min-content;
+    left: 80%;
+    bottom: 30%;
+    padding: 0;
+
+}
+
+.HCDWrapper{
+    color: #D3D0D0;
+    /* border: solid blue; */
+    position: relative;
+    width: 55%;
+    left: 5%;
+    bottom: 20%;
+    
+}
+.HCDWrapper table{
+    font-size: 70%;
+    display: inline;
+}
+
+.HCDWrapper th{
+    text-align: center;
+    padding-right: 10px;
+    
+
+}
+.HCDWrapper td{
+    /* font-size: .8em; */
+    text-align: center ;
+
+    padding-right: 10px
+}
+
+.bold{
+    font-weight: bold;
+}
