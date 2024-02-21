@@ -8,7 +8,8 @@ function BuildMap() {
   return (
     <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
       <Map 
-        mapId = "1c5077200cf79e79" 
+        // mapId = "1c5077200cf79e79" 
+        mapId = "bd0b946321228e2e"
         defaultCenter={position}
         // center={position} 
         defaultZoom={16}

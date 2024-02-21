@@ -1,5 +1,6 @@
 import './styles/styles.css'
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
+
 import BuildMap from './components/map';
 import SideBar from './components/sidebar';
 
