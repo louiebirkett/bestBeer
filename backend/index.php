@@ -109,21 +109,4 @@ function connectToMysql() {
 
     return $conn;
 }
-
-function getCacheSettings() {
-    $configFile = file_get_contents("./config.json");
-    $json = json_decode($configFile, true);
-
-    return $json["cache"];
-}
-
-function errorResponse($code, $message) {
-    http_response_code($code);
-    echo "{\"message\":\"$message\"}";
-}
-
-function cachePubs($userLat, $userLong, $searchRadius) {
-    // Call to Google Maps API
-}
-
 ?>

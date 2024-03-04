@@ -1,6 +1,1 @@
-POST https://mp1282.brighton.domains/ci536/index.php HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-userLat=50.81925479804397
-&userLong=-0.12336134655843525
-&searchRadius=100000
+GET https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJI4RCrvLK1okRum4FohluiF0&fields=name,rating&key=AIzaSyAHU_Dpz8m_mJMcirs4ITiK8DeuPq2Skfk

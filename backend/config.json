@@ -1,7 +1,7 @@
 {
     "production": false,
     "mysql": {
-        "host": "localhost",
+        "host": "mp1282.brighton.domains",
         "user": "mp1282_admin",
         "password": "ZzTHjD2BJTb5u.g",
         "db_name": "mp1282_ci536"
