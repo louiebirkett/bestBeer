@@ -1,6 +1,1 @@
 GET https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJI4RCrvLK1okRum4FohluiF0&fields=name,rating&key=AIzaSyAHU_Dpz8m_mJMcirs4ITiK8DeuPq2Skfk
-
-### Search for Places within a Radius
-
-
-GET https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=50.8225,-0.1372&radius=40000&type=bar&keyword=pub&key=AIzaSyAHU_Dpz8m_mJMcirs4ITiK8DeuPq2Skfk
