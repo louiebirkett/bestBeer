@@ -1,8 +1,14 @@
 {
+    "production": false,
     "mysql": {
         "host": "localhost",
         "user": "mp1282_admin",
         "password": "ZzTHjD2BJTb5u.g",
         "db_name": "mp1282_ci536"
+    },
+    "cache": {
+        "use_squaring": false,
+        "square_size": 0.001,
+        "cache_expiry_ms": 604800000
     }
 }
