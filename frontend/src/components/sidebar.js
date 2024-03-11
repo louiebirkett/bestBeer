@@ -1,6 +1,7 @@
 import '../styles/styles.css'
 import ResultWidget from './resultwidget';
 import SearchBar from './searchbar';
+import populateObject from './bestBeerApi';
 
 
 
@@ -19,6 +20,12 @@ function SideBar(){
         { name: 'Another Pub', rating: '3.8' },
         // Example array of Pub - add pubs as needed - this can be changed in the future to take input from database.
       ];
+
+      
+
+      console.log(populateObject());
+
+
 
     return(
         <div className='sidebarContainer'>
