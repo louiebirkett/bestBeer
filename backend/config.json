@@ -10,5 +10,8 @@
         "use_squaring": false,
         "square_size": 0.001,
         "cache_expiry_ms": 604800000
+    },
+    "google": {
+        "api_key": "AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY"
     }
 }

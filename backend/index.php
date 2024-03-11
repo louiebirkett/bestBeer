@@ -1,5 +1,7 @@
 <?php
 
+require './get_google_data.php';
+
 // Start of main code
 
 // Check if the request contains the user lat & long values to process this request
@@ -49,7 +51,7 @@ if($cacheSettings["use_squaring"]) {
 
     // The pubs need recaching
     if($recache) {
-        cachePubs($userLat, $userLong, $searchRadius);
+        cachePubs($conn, $userLat, $userLong, $searchRadius);
     }
 }
 
@@ -108,5 +110,30 @@ function connectToMysql() {
     }
 
     return $conn;
+}
+
+/* Utility function to send a response code and error message to the client */
+function errorResponse($code, $message) {
+    http_response_code($code);
+    echo "{\"message\":\"$message\"}";
+}
+
+function getCacheSettings() {
+    $configFile = file_get_contents("./config.json");
+    $json = json_decode($configFile, true);
+
+    return $json["cache"];
+}
+
+function cachePubs($conn, $latitude, $longitude, $radius) {
+    $configFile = file_get_contents("./config.json");
+    $json = json_decode($configFile, true);
+
+    $api_key = $json["google"]["api_key"];
+    $pubs = searchPubs($api_key, $latitude, $longitude, $radius);
+
+    foreach($pubs as $pub) {
+        print_r($pub['displayName']['text']);
+    }
 }
 ?>

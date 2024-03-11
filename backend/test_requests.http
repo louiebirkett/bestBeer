@@ -1,1 +1,17 @@
-GET https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJI4RCrvLK1okRum4FohluiF0&fields=name,rating&key=AIzaSyAHU_Dpz8m_mJMcirs4ITiK8DeuPq2Skfk
+POST https://places.googleapis.com/v1/places:searchNearby
+content-type: application/json
+X-Goog-Api-Key: AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY
+X-Goog-FieldMask: places.id,places.primaryType,places.displayName,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails
+
+{
+    "includedPrimaryTypes": ["bar", "night_club"],
+    "locationRestriction": {
+        "circle": {
+            "center": {
+                "latitude": 50.82460052343509,
+                "longitude": -0.1369764877090828
+            },
+            "radius": 5000
+        }
+    }
+}
