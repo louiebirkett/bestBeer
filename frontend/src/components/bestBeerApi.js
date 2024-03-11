@@ -23,8 +23,6 @@ async function populateObject( userLat, userLong, searchRadius){
                 hours: data.todayHours || "Hours Unknown",
                 open: data.openNow || "No information available",
                 diatance: data.dist || "IDK"
-
-                
             }));
             return(information);
 
