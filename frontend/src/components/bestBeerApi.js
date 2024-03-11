@@ -1,12 +1,14 @@
 
 
 
-
-async function populateObject( userLat, userLong, searchRadius){
+function populateObject( userLat, userLong, searchRadius){
 
     const url = 'https://mp1282.brighton.domains/ci536/index.php?' + 'userLat=' + userLat + '&userLong=' + userLong +  '&searchRadius =' + searchRadius;
 
         //  get the response from the API
+        callApi();
+
+        async function callApi(){
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -25,8 +27,12 @@ async function populateObject( userLat, userLong, searchRadius){
                 diatance: data.dist || "IDK"
             }));
             return(information);
+            console.log(information.name)
 
         } catch (error) {
             console.error('There has been a problem with the fetch operation:', error);
         }
+    }
 }
+
+export default populateObject;

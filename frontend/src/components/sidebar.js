@@ -23,7 +23,7 @@ function SideBar(){
 
       
 
-      console.log(populateObject());
+      console.log(populateObject("", "", ""));
 
 
 
