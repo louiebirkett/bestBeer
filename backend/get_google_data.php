@@ -3,6 +3,13 @@
 const FIELD_MASK = 'places.id,places.primaryType,places.displayName,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails';
 
 function searchPubs($api_key, $latitude, $longitude, $radius) {
+    // TODO: radius must be between 0 and 50000
+    if ($radius < 0 || $radius > 50000) {
+        echo 'Invalid radius, radius must be between 0 and 50000 inclusive.';
+        http_response_code(400);
+        exit;
+    }
+
     // Google Maps API endpoint
     $api_url = 'https://places.googleapis.com/v1/places:searchNearby';
 
@@ -37,7 +44,8 @@ function searchPubs($api_key, $latitude, $longitude, $radius) {
 
     // Check for errors
     if(curl_errno($ch)) {
-        echo 'Error: ' . curl_error($ch);
+        echo 'Error: Response from server: ' . $httpcode;
+        http_response_code(400);
         exit;
     }
 
@@ -49,10 +57,11 @@ function searchPubs($api_key, $latitude, $longitude, $radius) {
 
     // Check if decoding was successful
     if ($result === null || !isset($result['places'])) {
-        echo 'Error parsing JSON';
+        http_response_code(204);
         exit;
     }
 
+    http_response_code(200);
     return $result['places'];
 }
 ?>
