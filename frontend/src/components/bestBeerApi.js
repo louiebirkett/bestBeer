@@ -1,6 +1,8 @@
 function populateObject(userLat, userLong, searchRadius) {
     const url = 'https://mp1282.brighton.domains/ci536/index.php?userLat=' + userLat + '&userLong=' + userLong + '&searchRadius=' + searchRadius;
 
+
+    const pubs = [];
     return fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -13,7 +15,7 @@ function populateObject(userLat, userLong, searchRadius) {
                 name: item.name,
                 distance: item.dist
             }));
-            console.log(pubs);
+            // console.log(pubs);
             return pubs;
         })
         .catch(error => {
@@ -21,3 +23,5 @@ function populateObject(userLat, userLong, searchRadius) {
             return null; // Or handle the error appropriately
         });
 }
+
+export default populateObject;
