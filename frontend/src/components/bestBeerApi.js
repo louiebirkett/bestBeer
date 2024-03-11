@@ -19,15 +19,19 @@ function populateObject( userLat, userLong, searchRadius){
             
 
             const information = data.map(record => ({
-                name: data.name || "No name ",
+                name: data.name || "No name "
+                /*
                 rating: data.rating || "No rating available ",
                 cost: data.cost || "Unknown",
                 hours: data.todayHours || "Hours Unknown",
                 open: data.openNow || "No information available",
                 diatance: data.dist || "IDK"
+                */
             }));
+
+            console.log(information);
             return(information);
-            console.log(information.name)
+            
 
         } catch (error) {
             console.error('There has been a problem with the fetch operation:', error);
