@@ -9,6 +9,7 @@ import populateObject from './bestBeerApi';
 
 function SideBar(){
 
+    /*
     const pubs = [
         { name: 'Ye Old King and Queen', rating: '4.5', hours: '12:00 - 00:00', cost: '£££', distance: '10'},
         { name: 'Another Pub', rating: '3.8' },
@@ -20,10 +21,25 @@ function SideBar(){
         { name: 'Another Pub', rating: '3.8' },
         // Example array of Pub - add pubs as needed - this can be changed in the future to take input from database.
       ];
+      */
+      const objects = populateObject("50.824", "-0.136", "5000");
+
+     
+      if (Array.isArray(objects)) {
+          
+          const pubs = objects.map(item => ({
+              name: item.name,
+              rating: item.distance
+          }));
+      
+          console.log(pubs);
+      } else {
+          console.error('Objects is not an array or is undefined.');
+      }
 
       
 
-      console.log(populateObject("", "", ""));
+      console.log(populateObject("", "", "p"));
 
 
 
