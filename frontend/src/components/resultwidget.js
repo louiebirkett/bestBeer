@@ -11,16 +11,18 @@ function ResultWidget({name, rating, hours, cost, distance}){
         </div>
         <div className='HCDWrapper'> {/* Hours, Cost, Distance*/ }
             <table>
-                <tr>
-                    <th scope='col'>Hours</th>
-                    <th scope='col'>Cost</th>
-                    <th scope='col'>Distance</th>
-                </tr>
-                <tr>
-                    <td>{hours}</td>
-                    <td>{cost}</td>
-                    <td className="bold">{distance}mi</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th scope='col'>Hours</th>
+                        <th scope='col'>Cost</th>
+                        <th scope='col'>Distance</th>
+                    </tr>
+                    <tr>
+                        <td>{hours}</td>
+                        <td>{cost}</td>
+                        <td className="bold">{distance}mi</td>
+                    </tr>
+                </tbody>
             </table>
 
             {/* <table>
