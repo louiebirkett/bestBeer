@@ -141,3 +141,28 @@
 .bold{
     font-weight: bold;
 }
+
+
+.stars {
+    white-space: nowrap;
+    right: 0;
+    
+    svg {
+      width: 20px;
+    }
+  }
+  
+  .cover {
+    background: white;
+    
+    height: 100%;
+    overflow: hidden;
+    mix-blend-mode: color;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  svg {
+    fill: gold;
+  }
