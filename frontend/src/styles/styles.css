@@ -1,15 +1,16 @@
-
+/* Contains the map */
 .mapContainer{
     /* position: absolute  ; */
     z-index: 0;
-
 }
+
+/* Container for sidebar */
 .sidebarContainer{
     overflow: hidden;
     /* border: solid red; */
     background-color: rgba(93, 93, 93, 0.9);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem ;
+    /* border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem; */
     height: 100%;
     width: 45vh;
     z-index: 1;
@@ -54,14 +55,24 @@
     cursor: pointer;
 }
 
-
+.warningBanner {
+    background-color: #f44336;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 
 .resultsContainer{
     overflow: auto;
     /* border: solid blue; */
     height: 100%;
 }
-.resultWrapper{
+
+.resultWrapper {
+    position: relative;
     width: 100%;
     height: 125px;
     border-top-right-radius: 1rem;
@@ -69,35 +80,35 @@
     background-color: rgba(93, 93, 93, 0.75);
     box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
     /* border: solid pink 2px; */
-    
 }
 
-.resultTitle{
+.resultTitle {
     display: block;
     margin: 0;
     padding-top: 3%;
     padding-left: 10%;
     font-size: 1rem;
-    font-weight:normal;
+    font-weight: normal;
     color: #F0ECEC;
     
 }
 
-.partition{
+.partition {
     /* border: solid red; */
     width: 80%;
     padding-left: 5%;
     padding-top: 1%;
 }
 
-.resultRating{
-    position: relative;
-    /* border: solid blue; */
+.resultRating {
+    position: absolute;
     width: min-content;
-    left: 80%;
-    bottom: 30%;
+    right: .2rem;
+    bottom: .2rem;
     padding: 0;
-
+    margin: 0;
+    font-weight: 400;
+    color: #ffdf00;
 }
 
 .HCDWrapper{

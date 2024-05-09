@@ -172,8 +172,8 @@ class GoogleData {
         }
 
         $this->util = $util;
-        $lat = $latitude;
-        $long = $longitude;
+        $this->lat = $latitude;
+        $this->long = $longitude;
 
         // Google Maps API endpoint
         // Currently, this endpoint only returns 20 results at a time.
@@ -289,9 +289,10 @@ class Utility {
         $lat2 = deg2rad($lat2);
         $long2 = deg2rad($long2);
 
-        return 6371000 * acos(cos($lat1) * cos($lat2) * 
+        $dist = 6371000 * acos(cos($lat1) * cos($lat2) * 
                             cos($long2 - $long1) + 
                             sin($lat1) * sin($lat2));
+        return $dist;
     }
 }
 

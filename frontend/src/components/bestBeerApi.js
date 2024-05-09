@@ -1,6 +1,9 @@
-function populateObject(userLat, userLong, searchRadius) {
-    const url = 'https://mp1282.brighton.domains/ci536/index.php?userLat=' + userLat + '&userLong=' + userLong + '&searchRadius=' + searchRadius;
+// The endpoint for the backend API
+const endpoint = 'https://mp1282.brighton.domains/ci536/api.php';
 
+// Function that returns a promise that resolves to an array of objects from the backend API
+function populateObject(userLat, userLong, searchRadius) {
+    const url = endpoint + '?userLat=' + userLat + '&userLong=' + userLong + '&searchRadius=' + searchRadius;
 
     const pubs = [];
     return fetch(url)
@@ -13,9 +16,19 @@ function populateObject(userLat, userLong, searchRadius) {
         .then(data => {
             const pubs = data.map(item => ({
                 name: item.name,
-                distance: item.dist
+                type: item.type,
+                lat: item.lat,
+                long: item.long,
+                distance: item.dist,
+                rating: item.rating,
+                ratingCount: item.userRatingCount,
+                hours: 0,
+                price: item.price,
+                outdoorSeating: item.outdoorSeating,
+                liveMusic: item.liveMusic,
+                servesCocktails: item.servesCocktails,
+                allowsDogs: item.allowsDogs
             }));
-            // console.log(pubs);
             return pubs;
         })
         .catch(error => {

@@ -2,22 +2,18 @@ import React, { useState, useEffect } from 'react';
 import '../styles/styles.css';
 import ResultWidget from './resultwidget';
 import SearchBar from './searchbar';
+import WarningBanner from './warningLocationBanner';
 import populateObject from './bestBeerApi';
 
 function SideBar() {
   const [pubs, setPubs] = useState([]);
+  const [locationAllowed, setLocationAllowed] = useState(false);
 
-  useEffect(() => {
-    populateObject("50.824", "-0.136", "5000")
+  function populate(lat, long, radius) {
+    populateObject(lat, long, radius)
       .then(objects => {
         if (Array.isArray(objects)) {
-          const updatedPubs = objects.map(item => ({
-            name: item.name,
-            distance: item.distance,
-            // Add more properties as needed
-          }));
-          console.log(updatedPubs, 'in scope');
-          setPubs(updatedPubs);
+          setPubs(objects);
         } else {
           console.error('Objects is not an array or is undefined.');
         }
@@ -25,9 +21,21 @@ function SideBar() {
       .catch(error => {
         console.error('Error:', error);
       });
-  }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
+  }
 
-  console.log(pubs, 'out of scope');
+  useEffect(() => {
+    // Try to get users location, if enabled
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        populate(position.coords.latitude, position.coords.longitude, 5000);
+        setLocationAllowed(true);
+      });
+    } else {
+      // Ask user to select a location or allow location
+      <WarningBanner />
+      console.error('Geolocation is not supported by this device.');
+    }
+  }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
 
   return (
     <div className='sidebarContainer'>
@@ -40,15 +48,14 @@ function SideBar() {
         </div>
       </div>
 
+      {
+        !locationAllowed && <WarningBanner />
+      }
+
       <div className='resultsContainer'>
         {pubs.map((pub, index) => (
           <ResultWidget
-            key={index}
-            name={pub.name}
-            rating={pub.rating}
-            // hours={pub.hours}
-            // cost={pub.cost}
-            distance={pub.distance}
+            pubObject={pub}
           />
         ))}
       </div>
