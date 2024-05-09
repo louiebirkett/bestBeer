@@ -1,13 +1,17 @@
 <?php
 
+// Allow cross origin requests
+header('Access-Control-Allow-Origin: *');
+
 require './cache.php';
+require './get_google_data.php';
 
 // Start of main code
 
 // Check if the request contains the user lat & long values to process this request
 if(!isset($_REQUEST['userLat']) || !isset($_REQUEST['userLong'])) {
     // Return error status code
-    errorResponse(400, 'Request must contain userLat and userLong parameters for current location.');
+    http_response_code(400);
     return;
 }
 
@@ -21,39 +25,29 @@ if(isset($_REQUEST['searchRadius'])) {
 
 // TODO: Sanatise user lat, long, search radius values before putting into sql statement
 
-// Connect to the MySQL database
-$conn = connectToMysql();
 
-$cacheSettings = getCacheSettings();
-// Covert user lat and long into square
-if($cacheSettings["use_squaring"]) {
-    $squareSize = $cacheSettings["square_size"];
-    $userLat = $userLat - fmod($userLat, $squareSize);
-    $userLong = $userLong - fmod($userLong, $squareSize);
+if(shouldUseMysql()) {
+    // Connect to the MySQL database
+} else {
+    // Query the Google API directly, avoiding mysql database and any cache that might exist
+    // Get API key
+    $configFile = file_get_contents("./config.json");
+    $json = json_decode($configFile, true);
+    $api_key = $json["google"]["api_key"];
 
-    // Check the square cache for these values to see if they are up to date, otherwise cache new values
-    $statement = $conn->prepare("SELECT `lastCacheTimestamp` FROM `tableSquareCache` WHERE locLat=? AND locLong=? AND squareSize=?");
-    $statement->bind_param("ddd", $userLat, $userLong, $squareSize);
-    $statement->execute();
-    $result = $statement->get_result();
-
-    $recache = false;
-    if(!is_bool($result) && $result->num_rows > 0) {
-        $lastCache = intval($result->fetch_assoc()["lastCacheTimestamp"]);
-        var_dump($lastCache);
-
-        if(time() - $lastCache > intval($cacheSettings["cache_expiry_ms"])) {
-            $recache = true;
-        }
-    } else {
-        $recache = true;
-    }
-
-    // The pubs need recaching
-    if($recache) {
-        cachePubs($conn, $userLat, $userLong, $searchRadius);
+    $pubs = searchPubs($api_key, $userLat, $userLong, $searchRadius);
+    foreach($pubs as $pub) {
+        $gid = $pub['id'];
+        $name = $pub['displayName']['text'];
+        $lat = $pub['location']['latitude'];
+        $long = $pub['location']['longitude'];
+        array_push($values, "('$gid', '$name', $lat, $long)");
     }
 }
+$conn = connectToMysql();
+
+// Check if the cache needs updating
+tryCache($conn, $userLat, $userLong, $searchRadius);
 
 // Search for pubs within a certain distance around the location
 // Use prepared statement to parametise the input fields
@@ -81,12 +75,20 @@ if(!is_bool($result)) {
 }
 $conn->close();
 
+http_response_code(200);
 echo json_encode($arr);
 // End of main code
 
 // Functions
 function sanatise($input) {
 
+}
+
+function shouldUseMysql() {
+    $configFile = file_get_contents("./config.json");
+    $json = json_decode($configFile, true);
+
+    return $json["mysql"]["use_mysql"];
 }
 
 function connectToMysql() {
@@ -110,18 +112,5 @@ function connectToMysql() {
     }
 
     return $conn;
-}
-
-/* Utility function to send a response code and error message to the client */
-function errorResponse($code, $message) {
-    http_response_code($code);
-    echo "{\"message\":\"$message\"}";
-}
-
-function getCacheSettings() {
-    $configFile = file_get_contents("./config.json");
-    $json = json_decode($configFile, true);
-
-    return $json["cache"];
 }
 ?>

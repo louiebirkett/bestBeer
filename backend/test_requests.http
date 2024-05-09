@@ -1,7 +1,7 @@
 POST https://places.googleapis.com/v1/places:searchNearby
 content-type: application/json
 X-Goog-Api-Key: AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY
-X-Goog-FieldMask: places.id,places.primaryType,places.displayName,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails
+X-Goog-FieldMask: places.id,places.primaryType,places.displayName,places.location,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails
 
 {
     "includedPrimaryTypes": ["bar", "night_club"],
@@ -15,3 +15,7 @@ X-Goog-FieldMask: places.id,places.primaryType,places.displayName,places.formatt
         }
     }
 }
+
+###
+
+GET https://mp1282.brighton.domains/ci536/api.php?userLat=50.82460052343509&userLong=-0.1369764877090828

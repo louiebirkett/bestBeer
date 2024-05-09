@@ -1,16 +1,18 @@
 <?php
 
-const FIELD_MASK = 'places.id,places.primaryType,places.displayName,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails';
+const FIELD_MASK = 'places.id,places.primaryType,places.displayName,places.location,places.formattedAddress,places.regularOpeningHours,places.priceLevel,places.rating,places.userRatingCount,places.websiteUri,places.allowsDogs,places.goodForWatchingSports,places.liveMusic,places.outdoorSeating,places.servesCocktails';
 
 function searchPubs($api_key, $latitude, $longitude, $radius) {
     // TODO: radius must be between 0 and 50000
     if ($radius < 0 || $radius > 50000) {
-        echo 'Invalid radius, radius must be between 0 and 50000 inclusive.';
         http_response_code(400);
         exit;
     }
 
     // Google Maps API endpoint
+    // Currently, this endpoint only returns 20 results at a time. 
+    // And the new nearby search API does not support pagination yet (like the old API did)
+    // There is a feature request open for this to be added: https://issuetracker.google.com/issues/314796720
     $api_url = 'https://places.googleapis.com/v1/places:searchNearby';
 
     // Parameters for the API request
