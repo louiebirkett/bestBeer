@@ -1,4 +1,4 @@
-import {APIProvider, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
+import {APIProvider, AdvancedMarker, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
 import MapHandler from './mapHandler';
 
 function BuildMap({selectedPlace, setPubs}) {
@@ -7,7 +7,7 @@ function BuildMap({selectedPlace, setPubs}) {
       <Map 
         // mapId = "1c5077200cf79e79" 
         mapId = "bd0b946321228e2e" // Change map ID to change what icons are displayed by default
-        defaultCenter={selectedPlace}
+        defaultCenter={selectedPlace.latLng}
         // center={position} 
         defaultZoom={16}
         style={{height: '100vh'}}
@@ -17,8 +17,8 @@ function BuildMap({selectedPlace, setPubs}) {
         zoomControlOptions={true}
         >
         { 
-          <Marker position={selectedPlace} onClick={() => {
-            console.log('Marker clicked');
+          <AdvancedMarker position={selectedPlace.latLng} title={selectedPlace.title} onClick={() => {
+            console.log('Marker clicked: ' + selectedPlace.title);
           }}/>
         }
       </Map>

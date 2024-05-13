@@ -57,7 +57,7 @@ function ResultWidget({pubObject, setSelectedPlace}) {
 
     return (
     <button className="resultWrapper" onClick={() => 
-        setSelectedPlace({lat: pubObject.lat, lng: pubObject.long})}>
+        setSelectedPlace({latLng: {lat: pubObject.lat, lng: pubObject.long}, title: pubObject.name})}>
             
         <h1 className='resultTitle' style={{fontSize: "larger"}}>{pubObject.name}</h1>
         <div className='partition'>

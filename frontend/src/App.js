@@ -10,7 +10,7 @@ import areaSearch from './components/areaSearch';
 
 function App() {
   const [locationAllowed, setLocationAllowed] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState({lat: 50.823160104758664, lng: -0.13640210224646782});
+  const [selectedPlace, setSelectedPlace] = useState({latLng: {lat: 50.823160104758664, lng: -0.13640210224646782}, title:'Brighton'});
   const [pubs, setPubs] = useState([]);
   // ^ Defaults to Brighton, UK
 
@@ -19,11 +19,11 @@ function App() {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         setLocationAllowed(true);
-        setSelectedPlace({lat: position.coords.latitude, lng: position.coords.longitude});
+        setSelectedPlace({latLng: {lat: position.coords.latitude, lng: position.coords.longitude}, title: 'You'});
       });
     }
 
-    areaSearch(selectedPlace, setPubs);
+    areaSearch(selectedPlace.latLng, setPubs);
   }, []);
 
   return (

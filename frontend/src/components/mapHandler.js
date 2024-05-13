@@ -5,7 +5,7 @@ import areaSearch from './areaSearch';
 
 function MapHandler({selectedPlace, setPubs}) {
     const [moved, setMoved] = useState(false);
-    const [lastCenter, setLastCenter] = useState(selectedPlace);
+    const [lastCenter, setLastCenter] = useState(selectedPlace.latLng);
     const [movedVector, setMovedVector] = useState([0, 0]);
     const searchAreaMoveDistanceSquared = 1500;
     const map = useMap();
@@ -21,7 +21,7 @@ function MapHandler({selectedPlace, setPubs}) {
         if(!map)
             return;
 
-        map.panTo(selectedPlace);
+        map.panTo(selectedPlace.latLng);
     }, [map, selectedPlace]);
 
     useEffect(() => {
@@ -40,7 +40,6 @@ function MapHandler({selectedPlace, setPubs}) {
     useEffect(() => {
         // Check if movedVector squared is greater than searchAreaMoveDistanceSquared
         const vectorSquared = movedVector[0] * movedVector[0] + movedVector[1] * movedVector[1];
-        console.log(vectorSquared, "Vector squared");
         if(vectorSquared > searchAreaMoveDistanceSquared && !moved) {
             setMoved(true);
         }
