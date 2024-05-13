@@ -1,4 +1,5 @@
 import '../styles/styles.css'
+import { useMap } from '@vis.gl/react-google-maps';
 
 // Function to get the price sign based on the locale
 function getLocalePriceSign() {
@@ -50,12 +51,14 @@ function googlePriceLevelToSymbol(priceLevel) {
     }
 }
 
-function ResultWidget({pubObject}){
+function ResultWidget({pubObject, setSelectedPlace}) {
     let distance = (pubObject.distance / 1000).toFixed(2);
     let price = googlePriceLevelToSymbol(pubObject.price);
 
     return (
-    <div className="resultWrapper">
+    <button className="resultWrapper" onClick={() => 
+        setSelectedPlace({lat: pubObject.lat, lng: pubObject.long})}>
+            
         <h1 className='resultTitle' style={{fontSize: "larger"}}>{pubObject.name}</h1>
         <div className='partition'>
             <svg viewBox="0 0 415 36" fill="none" xmlns="http://www.w3.org/2000/svg"> <line y1="0.5" x2="415" y2="0.5" stroke="white"/> <line x1="270.5" y1="10" x2="270.5" y2="36" stroke="white"/></svg>
@@ -85,7 +88,7 @@ function ResultWidget({pubObject}){
             </table> */}
         </div>
         <h1 className="resultRating">{pubObject.rating}&#9733;</h1>
-    </div>
+    </button>
     );
 };
 

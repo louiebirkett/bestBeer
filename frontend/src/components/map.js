@@ -1,16 +1,13 @@
 import {APIProvider, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
-import { useEffect } from 'react';
+import MapHandler from './mapHandler';
 
-
-
-function BuildMap() {
-  const position = {lat: 50.823160104758664, lng: -0.13640210224646782}; // Brighton => lat: 50.823160104758664, long: -0.13640210224646782
+function BuildMap({selectedPlace}) {
   return (
     <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
       <Map 
         // mapId = "1c5077200cf79e79" 
-        mapId = "bd0b946321228e2e"
-        defaultCenter={position}
+        mapId = "bd0b946321228e2e" // Change map ID to change what icons are displayed by default
+        defaultCenter={selectedPlace}
         // center={position} 
         defaultZoom={16}
         style={{height: '100vh'}}
@@ -21,6 +18,8 @@ function BuildMap() {
         >
         {/* <Marker position={position}/> */}
       </Map>
+
+      <MapHandler selectedPlace={selectedPlace} />
     </APIProvider>
   );
 }

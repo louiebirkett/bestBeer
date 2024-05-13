@@ -2,7 +2,7 @@
 const endpoint = 'https://mp1282.brighton.domains/ci536/api.php';
 
 // Function that returns a promise that resolves to an array of objects from the backend API
-function populateObject(userLat, userLong, searchRadius) {
+function getDataPromise(userLat, userLong, searchRadius) {
     const url = endpoint + '?userLat=' + userLat + '&userLong=' + userLong + '&searchRadius=' + searchRadius;
 
     const pubs = [];
@@ -37,4 +37,4 @@ function populateObject(userLat, userLong, searchRadius) {
         });
 }
 
-export default populateObject;
+export default getDataPromise;
