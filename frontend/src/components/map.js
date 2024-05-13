@@ -1,7 +1,16 @@
 import {APIProvider, AdvancedMarker, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
-import MapHandler from './mapHandler';
+import { useEffect, useState } from 'react';
 
-function BuildMap({selectedPlace, setPubs}) {
+import MapHandler from './mapHandler';
+import CustomMarker from './customMarker';
+
+function BuildMap({selectedPlace, pubs, setPubs}) {
+  const [shownIndex, setShownIndex] = useState(-1);
+
+  useEffect(() => {
+    setShownIndex(-1);
+  }, [pubs]);
+
   return (
     <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
       <Map 
@@ -17,9 +26,19 @@ function BuildMap({selectedPlace, setPubs}) {
         zoomControlOptions={true}
         >
         { 
-          <AdvancedMarker position={selectedPlace.latLng} title={selectedPlace.title} onClick={() => {
-            console.log('Marker clicked: ' + selectedPlace.title);
-          }}/>
+          pubs.map((pub, index) => (
+            <CustomMarker 
+              key={index}
+              selectedPlace={{latLng: {lat: pub.lat, lng: pub.long}, title: pub.name}}
+              infoShown={index === shownIndex}
+              setInfoShown={() => {
+                if(index === shownIndex)
+                  setShownIndex(-1);
+                else
+                  setShownIndex(index);
+              }}
+            />
+          ))
         }
       </Map>
 
