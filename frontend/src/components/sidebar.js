@@ -3,7 +3,7 @@ import '../styles/styles.css';
 import ResultWidget from './resultwidget';
 import SearchBar from './searchbar';
 
-function SideBar({pubs, setSelectedPlace}) {
+function SideBar({pubs, setSelectedPub}) {
   return (
     <div className='sidebarContainer'>
       <div className='searchContainer'>
@@ -20,7 +20,7 @@ function SideBar({pubs, setSelectedPlace}) {
           <ResultWidget
             key={index}
             pubObject={pub}
-            setSelectedPlace={setSelectedPlace}
+            setSelectedPub={setSelectedPub}
           />
         ))}
       </div>

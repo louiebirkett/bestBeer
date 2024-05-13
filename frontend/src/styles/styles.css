@@ -154,3 +154,42 @@
     border-radius: .5rem;
     border-width: thin;
 }
+
+/* Styling for info popup */
+.pub-info .info-title {
+    margin: .3rem 0;
+    font-size: large
+}
+
+.pub-info .on-tap ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+}
+.pub-info .on-tap ul li {
+    display: inline;
+}
+.pub-info .on-tap ul li .beer-info img {
+    width: 5vw;
+    height: 5vh;
+    transition: width .25s, height .25s;
+    border-radius: .75rem;
+}
+.pub-info .on-tap ul li .beer-info:hover img {
+    width: 5rem;
+    height: 5rem;
+    transition: width .25s, height .25s;
+}
+/* Beer name and info */
+.pub-info .on-tap ul li .beer-info p.beer-name {
+    font-weight: lighter;
+    text-align: center;
+}
+.pub-info .on-tap ul li .beer-info:hover p.beer-name {
+    font-weight: bold;
+    text-align: center;
+}
+.pub-info .on-tap ul li .beer-info p.beer-price {
+    text-align: center;
+}

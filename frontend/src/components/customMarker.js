@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { AdvancedMarker, InfoWindow, useAdvancedMarkerRef } from "@vis.gl/react-google-maps";
 
-function CustomMarker({selectedPlace, infoShown, setInfoShown}) {
+import PubInfo from "./pubInfo";
+
+function CustomMarker({pubObject, infoShown, setInfoShown}) {
     const [markerRef, marker] = useAdvancedMarkerRef();
 
     return (
@@ -9,16 +10,17 @@ function CustomMarker({selectedPlace, infoShown, setInfoShown}) {
             <AdvancedMarker 
                 ref={markerRef}
                 onClick={() => setInfoShown(!infoShown)}
-                position={selectedPlace.latLng}
-                title={selectedPlace.title}
+                position={{lat: pubObject.lat, lng: pubObject.long}}
+                title={pubObject.name}
             />
 
             {
                 infoShown &&
                     <InfoWindow
                         anchor={marker}
+                        minWidth={400}
                         onCloseClick={() => setInfoShown(false)}>
-                        {selectedPlace.title}
+                        <PubInfo pubObject={pubObject} />
                     </InfoWindow>
             }
         </>

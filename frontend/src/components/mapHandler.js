@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 import areaSearch from './areaSearch';
 
-function MapHandler({selectedPlace, setPubs}) {
+function MapHandler({centreLocation, setPubs}) {
     const [moved, setMoved] = useState(false);
-    const [lastCenter, setLastCenter] = useState(selectedPlace.latLng);
+    const [lastCenter, setLastCenter] = useState(centreLocation);
     const [movedVector, setMovedVector] = useState([0, 0]);
     const searchAreaMoveDistanceSquared = 1500;
     const map = useMap();
@@ -21,8 +21,8 @@ function MapHandler({selectedPlace, setPubs}) {
         if(!map)
             return;
 
-        map.panTo(selectedPlace.latLng);
-    }, [map, selectedPlace]);
+        map.panTo({lat: centreLocation.lat, lng: centreLocation.lng - 0.005});
+    }, [map, centreLocation]);
 
     useEffect(() => {
         if(!map)

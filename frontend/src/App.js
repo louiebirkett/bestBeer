@@ -10,7 +10,8 @@ import areaSearch from './components/areaSearch';
 
 function App() {
   const [locationAllowed, setLocationAllowed] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState({latLng: {lat: 50.823160104758664, lng: -0.13640210224646782}, title:'Brighton'});
+  const [centreLocation, setCentreLocation] = useState({lat: 50.823160104758664, lng: -0.13640210224646782});
+  const [selectedPub, setSelectedPub] = useState(null);
   const [pubs, setPubs] = useState([]);
   // ^ Defaults to Brighton, UK
 
@@ -19,22 +20,36 @@ function App() {
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         setLocationAllowed(true);
-        setSelectedPlace({latLng: {lat: position.coords.latitude, lng: position.coords.longitude}, title: 'You'});
+        setCentreLocation({lat: position.coords.latitude, lng: position.coords.longitude});
       });
     }
 
-    areaSearch(selectedPlace.latLng, setPubs);
+    areaSearch(centreLocation, setPubs);
   }, []);
+
+  useEffect(() => {
+    if(selectedPub === null)
+      return;
+
+    setCentreLocation({lat: selectedPub.lat, lng: selectedPub.long});
+  }, [selectedPub]);
 
   return (
     <div>
-      {
-        !locationAllowed && <WarningBanner />
-      }
-      <SideBar pubs={pubs} setSelectedPlace={setSelectedPlace} />
-      <div className='mapContainer'>
-        <BuildMap selectedPlace={selectedPlace} pubs={pubs} setPubs={setPubs} />
-      </div>
+      { !locationAllowed && <WarningBanner /> }
+
+      <SideBar 
+        pubs={pubs} 
+        setSelectedPub={setSelectedPub} 
+      />
+
+      <BuildMap 
+          centreLocation={centreLocation}
+          selectedPub={selectedPub}
+          setSelectedPub={setSelectedPub} 
+          pubs={pubs} 
+          setPubs={setPubs} 
+        />
     </div>
   );
 }

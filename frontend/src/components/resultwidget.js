@@ -51,13 +51,13 @@ function googlePriceLevelToSymbol(priceLevel) {
     }
 }
 
-function ResultWidget({pubObject, setSelectedPlace}) {
+function ResultWidget({pubObject, setSelectedPub}) {
     let distance = (pubObject.distance / 1000).toFixed(2);
     let price = googlePriceLevelToSymbol(pubObject.price);
 
     return (
-    <button className="resultWrapper" onClick={() => 
-        setSelectedPlace({latLng: {lat: pubObject.lat, lng: pubObject.long}, title: pubObject.name})}>
+    <button className="resultWrapper" 
+            onClick={() => setSelectedPub(pubObject)}>
             
         <h1 className='resultTitle' style={{fontSize: "larger"}}>{pubObject.name}</h1>
         <div className='partition'>
