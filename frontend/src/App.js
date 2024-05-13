@@ -13,6 +13,7 @@ function App() {
   const [centreLocation, setCentreLocation] = useState({lat: 50.823160104758664, lng: -0.13640210224646782});
   const [selectedPub, setSelectedPub] = useState(null);
   const [pubs, setPubs] = useState([]);
+  const [shownPubs, setShownPubs] = useState([]);
   // ^ Defaults to Brighton, UK
 
   useEffect(() => {
@@ -27,6 +28,12 @@ function App() {
     areaSearch(centreLocation, setPubs);
   }, []);
 
+  // Reset the shown pubs whenever the list of pubs changes
+  useEffect(() => {
+    setShownPubs(pubs);
+  }, [pubs]);
+
+  // Update the centre location of the map whenever a pub is selected
   useEffect(() => {
     if(selectedPub === null)
       return;
@@ -40,6 +47,8 @@ function App() {
 
       <SideBar 
         pubs={pubs} 
+        shownPubs={shownPubs}
+        setShownPubs={setShownPubs}
         setSelectedPub={setSelectedPub} 
       />
 
@@ -49,6 +58,7 @@ function App() {
           setSelectedPub={setSelectedPub} 
           pubs={pubs} 
           setPubs={setPubs} 
+          shownPubs={shownPubs}
         />
     </div>
   );

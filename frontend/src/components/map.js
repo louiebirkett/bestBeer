@@ -3,7 +3,7 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import MapHandler from './mapHandler';
 import CustomMarker from './customMarker';
 
-function BuildMap({centreLocation, selectedPub, setSelectedPub, pubs, setPubs}) {
+function BuildMap({centreLocation, selectedPub, setSelectedPub, pubs, setPubs, shownPubs}) {
   return (
     <div className='mapContainer'>
       <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
@@ -19,7 +19,7 @@ function BuildMap({centreLocation, selectedPub, setSelectedPub, pubs, setPubs}) 
           zoomControlOptions={true}>
 
           { 
-            pubs.map((pub, index) => (
+            shownPubs.map((pub, index) => (
               <CustomMarker 
                 key={index}
                 pubObject={pub}

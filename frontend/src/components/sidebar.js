@@ -3,11 +3,11 @@ import '../styles/styles.css';
 import ResultWidget from './resultwidget';
 import SearchBar from './searchbar';
 
-function SideBar({pubs, setSelectedPub}) {
+function SideBar({pubs, shownPubs, setShownPubs, setSelectedPub}) {
   return (
     <div className='sidebarContainer'>
       <div className='searchContainer'>
-        <SearchBar />
+        <SearchBar pubs={pubs} setShownPubs={setShownPubs} />
         <div className='filterIcon'>
           <svg viewBox="0 0 38 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* ... (your filter icon SVG) */}
@@ -16,7 +16,7 @@ function SideBar({pubs, setSelectedPub}) {
       </div>
 
       <div className='resultsContainer'>
-        {pubs.map((pub, index) => (
+        {shownPubs.map((pub, index) => (
           <ResultWidget
             key={index}
             pubObject={pub}
