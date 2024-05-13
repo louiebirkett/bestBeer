@@ -1,6 +1,5 @@
 /* Contains the map */
-.mapContainer{
-    /* position: absolute  ; */
+.mapContainer {
     z-index: 0;
 }
 
@@ -140,4 +139,18 @@
 
 .bold{
     font-weight: bold;
+}
+
+#map-handler-container {
+    position: relative;
+}
+
+/* Styling for the map */
+#map-reload {
+    position: fixed;
+    top: 10vh;
+    right: 10vw;
+    padding: .6rem 1rem;
+    border-radius: .5rem;
+    border-width: thin;
 }

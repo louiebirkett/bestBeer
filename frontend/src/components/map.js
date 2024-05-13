@@ -1,7 +1,7 @@
 import {APIProvider, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
 import MapHandler from './mapHandler';
 
-function BuildMap({selectedPlace}) {
+function BuildMap({selectedPlace, setPubs}) {
   return (
     <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
       <Map 
@@ -16,10 +16,14 @@ function BuildMap({selectedPlace}) {
         mapTypeControl={false}
         zoomControlOptions={true}
         >
-        {/* <Marker position={position}/> */}
+        { 
+          <Marker position={selectedPlace} onClick={() => {
+            console.log('Marker clicked');
+          }}/>
+        }
       </Map>
 
-      <MapHandler selectedPlace={selectedPlace} />
+      <MapHandler selectedPlace={selectedPlace} setPubs={setPubs} />
     </APIProvider>
   );
 }

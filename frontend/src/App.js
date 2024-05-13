@@ -33,7 +33,7 @@ function App() {
       }
       <SideBar pubs={pubs} setSelectedPlace={setSelectedPlace} />
       <div className='mapContainer'>
-        <BuildMap selectedPlace={selectedPlace} />
+        <BuildMap selectedPlace={selectedPlace} setPubs={setPubs} />
       </div>
     </div>
   );
