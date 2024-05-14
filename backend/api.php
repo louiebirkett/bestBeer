@@ -61,6 +61,7 @@ class API {
     }
 
     private function returnMysqlResults($database) {
+        // This feature was in the legacy API, but has not been implemented in this version
         $this->util->sendErrorMessageAndExit(500, "MySQL database not implemented yet");
         exit;
     }
