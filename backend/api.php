@@ -61,8 +61,7 @@ class API {
     }
 
     private function returnMysqlResults($database) {
-        http_response_code(200);
-        echo "test";
+        $this->util->sendErrorMessageAndExit(500, "MySQL database not implemented yet");
         exit;
     }
 
