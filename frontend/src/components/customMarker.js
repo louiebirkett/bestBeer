@@ -13,7 +13,6 @@ function CustomMarker({pubObject, infoShown, setInfoShown}) {
                 position={{lat: pubObject.lat, lng: pubObject.long}}
                 title={pubObject.name}
             />
-
             {
                 infoShown &&
                     <InfoWindow

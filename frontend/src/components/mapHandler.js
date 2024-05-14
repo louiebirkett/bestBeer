@@ -21,13 +21,6 @@ function MapHandler({centreLocation, setPubs}) {
         if(!map)
             return;
 
-        map.panTo({lat: centreLocation.lat, lng: centreLocation.lng - 0.005});
-    }, [map, centreLocation]);
-
-    useEffect(() => {
-        if(!map)
-            return;
-
         const listener = map.addListener('dragend', () => {
             handleMapMove(map.getCenter());
         });
@@ -44,6 +37,14 @@ function MapHandler({centreLocation, setPubs}) {
             setMoved(true);
         }
     }, [movedVector, lastCenter]);
+
+    useEffect(() => {
+        if(!map)
+            return;
+
+        // -0.005 roughly centers the map on a 16:9 screen
+        map.panTo({lat: centreLocation.lat, lng: centreLocation.lng - 0.005});
+    }, [map, centreLocation]);
 
     return (
     <div id="map-handler-container">
