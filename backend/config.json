@@ -1,0 +1,19 @@
+{
+    "configVersion": 1,
+    "production": false,
+    "mysql": {
+        "use_mysql": false,
+        "host": "mp1282.brighton.domains",
+        "user": "mp1282_admin",
+        "password": "ZzTHjD2BJTb5u.g",
+        "db_name": "mp1282_ci536"
+    },
+    "cache": {
+        "enabled": false,
+        "always_cache": false,
+        "cache_expiry_ms": 604800000
+    },
+    "google": {
+        "api_key": "AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY"
+    }
+}

@@ -1,15 +1,15 @@
-
-.mapContainer{
-    /* position: absolute  ; */
+/* Contains the map */
+.mapContainer {
     z-index: 0;
-
 }
+
+/* Container for sidebar */
 .sidebarContainer{
     overflow: hidden;
     /* border: solid red; */
     background-color: rgba(93, 93, 93, 0.9);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem ;
+    /* border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem; */
     height: 100%;
     width: 45vh;
     z-index: 1;
@@ -54,50 +54,60 @@
     cursor: pointer;
 }
 
-
+.warningBanner {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    background-color: #f44336;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
 
 .resultsContainer{
     overflow: auto;
     /* border: solid blue; */
-    height: 100%;
+    height: 80%;
 }
-.resultWrapper{
+
+.resultWrapper {
+    position: relative;
     width: 100%;
     height: 125px;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem ;
     background-color: rgba(93, 93, 93, 0.75);
     box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
     /* border: solid pink 2px; */
-    
 }
 
-.resultTitle{
+.resultTitle {
     display: block;
     margin: 0;
-    padding-top: 3%;
-    padding-left: 10%;
+    padding: 0;
     font-size: 1rem;
-    font-weight:normal;
+    font-weight: normal;
     color: #F0ECEC;
     
 }
 
-.partition{
+.partition {
     /* border: solid red; */
     width: 80%;
     padding-left: 5%;
     padding-top: 1%;
 }
 
-.resultRating{
-    position: relative;
-    /* border: solid blue; */
+.resultRating {
+    position: absolute;
     width: min-content;
-    left: 80%;
-    bottom: 30%;
+    right: .2rem;
+    bottom: .2rem;
     padding: 0;
-
+    margin: 0;
+    font-weight: 400;
+    color: #ffdf00;
 }
 
 .HCDWrapper{
@@ -129,4 +139,57 @@
 
 .bold{
     font-weight: bold;
+}
+
+#map-handler-container {
+    position: relative;
+}
+
+/* Styling for the map */
+#map-reload {
+    position: fixed;
+    top: 10vh;
+    right: 10vw;
+    padding: .6rem 1rem;
+    border-radius: .5rem;
+    border-width: thin;
+}
+
+/* Styling for info popup */
+.pub-info .info-title {
+    margin: .3rem 0;
+    font-size: large
+}
+
+.pub-info .on-tap ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+}
+.pub-info .on-tap ul li {
+    display: inline;
+}
+.pub-info .on-tap ul li .beer-info img {
+    width: 5vw;
+    height: 5vh;
+    transition: width .25s, height .25s;
+    border-radius: .75rem;
+}
+.pub-info .on-tap ul li .beer-info:hover img {
+    width: 5rem;
+    height: 5rem;
+    transition: width .25s, height .25s;
+}
+/* Beer name and info */
+.pub-info .on-tap ul li .beer-info p.beer-name {
+    font-weight: lighter;
+    text-align: center;
+}
+.pub-info .on-tap ul li .beer-info:hover p.beer-name {
+    font-weight: bold;
+    text-align: center;
+}
+.pub-info .on-tap ul li .beer-info p.beer-price {
+    text-align: center;
 }

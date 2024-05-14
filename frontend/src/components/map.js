@@ -1,27 +1,45 @@
-import {APIProvider, Map, Marker, useMapsLibrary,} from '@vis.gl/react-google-maps';
-import { useEffect } from 'react';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
+import MapHandler from './mapHandler';
+import CustomMarker from './customMarker';
 
-
-function BuildMap() {
-  const position = {lat: 50.823160104758664, lng: -0.13640210224646782}; // Brighton => lat: 50.823160104758664, long: -0.13640210224646782
+function BuildMap({centreLocation, selectedPub, setSelectedPub, pubs, setPubs, shownPubs}) {
   return (
-    <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
-      <Map 
-        // mapId = "1c5077200cf79e79" 
-        mapId = "bd0b946321228e2e"
-        defaultCenter={position}
-        // center={position} 
-        defaultZoom={16}
-        style={{height: '100vh'}}
-        streetViewControl={false}
-        disableDefaultUI = {false}
-        mapTypeControl={false}
-        zoomControlOptions={true}
-        >
-        {/* <Marker position={position}/> */}
-      </Map>
-    </APIProvider>
+    <div className='mapContainer'>
+      <APIProvider apiKey={'AIzaSyA8WkVdelbke455KsAR_dzDz0FOEJja3iY'}>
+        <Map 
+          // mapId = "1c5077200cf79e79" 
+          mapId = "bd0b946321228e2e" // Change map ID to change what icons are displayed by default
+          defaultCenter={centreLocation}
+          defaultZoom={16}
+          style={{height: '100vh'}}
+          streetViewControl={false}
+          disableDefaultUI = {false}
+          mapTypeControl={false}
+          zoomControlOptions={true}>
+
+          { 
+            shownPubs.map((pub, index) => (
+              <CustomMarker 
+                key={index}
+                pubObject={pub}
+                infoShown={pub == selectedPub}
+                setInfoShown={() => {
+                  if(pub == selectedPub)
+                    setSelectedPub(null);
+                  else {
+                    setSelectedPub(pub);
+                  }
+                }}
+              />
+            ))
+          }
+
+        </Map>
+
+        <MapHandler centreLocation={centreLocation} setPubs={setPubs} />
+      </APIProvider>
+    </div>
   );
 }
 
