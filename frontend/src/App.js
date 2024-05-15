@@ -1,12 +1,14 @@
 import './styles/styles.css'
-import { useState, useEffect } from 'react';
-import { useMap } from '@vis.gl/react-google-maps';
+import React, { useState, useEffect, Suspense } from 'react';
 
-import BuildMap from './components/map';
 import SideBar from './components/sidebar';
 import WarningBanner from './components/warningLocationBanner';
+import LoadingSpinner from './components/loadingSpinner';
 
 import areaSearch from './components/areaSearch';
+
+// Lazy load the map for when its needed, rather than loading it on page load
+const BuildMap = React.lazy(() => import('./components/map'));
 
 function App() {
   const [locationAllowed, setLocationAllowed] = useState(false);
@@ -52,7 +54,8 @@ function App() {
         setSelectedPub={setSelectedPub} 
       />
 
-      <BuildMap 
+      <Suspense fallback={<LoadingSpinner />}>
+        <BuildMap 
           centreLocation={centreLocation}
           selectedPub={selectedPub}
           setSelectedPub={setSelectedPub} 
@@ -60,6 +63,7 @@ function App() {
           setPubs={setPubs} 
           shownPubs={shownPubs}
         />
+      </Suspense>
     </div>
   );
 }

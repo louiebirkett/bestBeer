@@ -1,3 +1,4 @@
+import React from 'react';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
 import MapHandler from './mapHandler';
@@ -43,4 +44,4 @@ function BuildMap({centreLocation, selectedPub, setSelectedPub, pubs, setPubs, s
   );
 }
 
-export default BuildMap;
+export default React.memo(BuildMap);
